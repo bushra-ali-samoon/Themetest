@@ -9,20 +9,10 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-// Route::get('/register', function () {
-//     return view('register');
-// })->name('register');
-  
-
-// Route::get('/register', function () {
-//     return view('register');
-// })->name('register.form');
-
-// Route::post('/register', function (Request $request) {
-//     // You can print submitted data for now
-//     dd($request->all());
-//     return back()->with('success', 'Registration successful!');
-// })->name('register.store');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+ 
 
 Route::get('/', function () {
     return view('welcome');

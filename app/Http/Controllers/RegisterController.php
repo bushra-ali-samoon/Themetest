@@ -28,6 +28,6 @@ class RegisterController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect()->back()->with('success', 'User registered successfully!');
+    return redirect()->route('dashboard')->with('success', 'Registered successfully!');
     }
 }
