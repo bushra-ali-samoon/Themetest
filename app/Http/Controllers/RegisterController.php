@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
-    public function create()
+    public function show()
     {
-        return view('register');
+        return view('auth.register');
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         DB::table('users')->insert([
@@ -28,6 +28,6 @@ class RegisterController extends Controller
             'updated_at' => now(),
         ]);
 
-    return redirect()->route('dashboard')->with('success', 'Registered successfully!');
+        return redirect('/dashboard')->with('success', 'User registered successfully!');
     }
 }
