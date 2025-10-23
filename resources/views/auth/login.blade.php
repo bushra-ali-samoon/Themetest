@@ -78,7 +78,7 @@
                                         Remember me
                                     </label>
                                 </div>
-<a href="{{ route('password.request') }}" class="link-primary fs-base fw-semibold">Forgot Password?</a>
+<a href="{{ route('password.form') }}" class="link-primary fs-base fw-semibold">Forgot Password?</a>
                             </div>
 
                             <div class="d-grid mb-10">

@@ -3,29 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ForgotPasswordController extends Controller
 {
     public function create()
     {
+        // Show your forgot password form
         return view('auth.forgot-password');
     }
-// public function showLinkRequestForm()
-// {
-//     return view('auth.passwords.email');
-// }
 
-    public function store(Request $request)
+    public function updatePassword(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|confirmed|min:6',
+        ]);
 
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+        DB::table('users')
+            ->where('email', $request->email)
+            ->update(['password' => Hash::make($request->password)]);
 
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with(['success' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+        return back()->with('success', 'Password has been reset successfully!');
     }
 }
