@@ -23,7 +23,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 // Forgot Password form
  
 Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('password.form');
-Route::post('/forgot-password', [ForgotPasswordController::class, 'updatePassword'])->name('password.update');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.store');
 
 
 // Reset Password form

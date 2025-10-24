@@ -8,17 +8,22 @@ use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
-    public function create($token)
+    // Show reset password form
+    public function create(Request $request, $token)
     {
-        return view('auth.reset-password', ['token' => $token]);
+        return view('auth.reset-password', [
+            'token' => $token,
+            'email' => $request->email,
+        ]);
     }
 
+    // Handle password update
     public function store(Request $request)
     {
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $status = Password::reset(
@@ -30,8 +35,8 @@ class ResetPasswordController extends Controller
             }
         );
 
-        return $status == Password::PASSWORD_RESET
-            ? redirect()->route('login.form')->with('success', __($status))
+        return $status === Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('success', 'Password reset successfully!')
             : back()->withErrors(['email' => [__($status)]]);
     }
 }

@@ -1,92 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Reset Password</title>
-    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" />
-</head>
+@extends('layouts.noauth')
 
-<body id="kt_body" class="app-blank">
-<div class="d-flex flex-column flex-root" id="kt_app_root">
-    <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+@section('title', 'Forgot Password | Metronic')
 
-        <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1">
-            <div class="d-flex flex-center flex-column flex-lg-row-fluid">
-                <div class="w-lg-500px p-10">
+@section('form')
+<form class="form w-100" method="POST" action="{{ route('password.store') }}">
+    @csrf
 
-                    <!--begin::Form-->
-                    <form class="form w-100" method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <div class="text-center mb-11">
-                            <h1 class="text-dark fw-bolder mb-3">Reset Password</h1>
-                            <div class="text-gray-500 fw-semibold fs-6">
-                                Enter your email and new password below.
-                            </div>
-                        </div>
-
-                        <!-- Success Message -->
-                        @if(session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
-
-                        <!-- Error Message -->
-                        @if($errors->any())
-                            <div class="alert alert-danger">
-                                {{ $errors->first() }}
-                            </div>
-                        @endif
-
-                        <!-- Email -->
-                        <div class="fv-row mb-8">
-                            <input type="email" name="email" class="form-control bg-transparent"
-                                   placeholder="Email address" required />
-                        </div>
-
-                        <!-- New Password -->
-                        <div class="fv-row mb-8">
-                            <input type="password" name="password" class="form-control bg-transparent"
-                                   placeholder="New Password" required />
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div class="fv-row mb-8">
-                            <input type="password" name="password_confirmation" class="form-control bg-transparent"
-                                   placeholder="Confirm Password" required />
-                        </div>
-
-                        <div class="d-grid mb-10">
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">Reset Password</span>
-                            </button>
-                        </div>
-
-                        <div class="text-gray-500 text-center fw-semibold fs-6">
-                            <a href="{{ url('/login') }}" class="link-primary fw-semibold">Back to Login</a>
-                        </div>
-                    </form>
-                    <!--end::Form-->
-
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2"
-             style="background-image: url('{{ asset('assets/media/misc/auth-bg.png') }}')">
-            <div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100 text-center">
-                <img alt="Logo" src="{{ asset('assets/media/logos/custom-1.png') }}" class="h-60px h-lg-75px mb-10" />
-                <h1 class="text-white fs-2qx fw-bolder mb-7">Reset Your Password Easily</h1>
-                <div class="text-white fs-base opacity-75">
-                    Enter your email and new password to update your account credentials instantly.
-                </div>
-            </div>
-        </div>
-
+    <!-- Heading -->
+    <div class="text-center mb-11">
+        <h1 class="text-dark fw-bolder mb-3">Forgot Password?</h1>
+        <div class="text-gray-500 fw-semibold fs-6">Enter your email to reset your password.</div>
     </div>
-</div>
 
-<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
-</body>
-</html>
+    <!-- Social Login Buttons -->
+    <div class="row g-3 mb-9">
+        <div class="col-md-6">
+            <a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center w-100">
+                <img alt="Logo" src="{{ asset('assets/media/svg/brand-logos/google-icon.svg') }}" class="h-15px me-3" />
+                Sign in with Google
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center w-100">
+                <img alt="Logo" src="{{ asset('assets/media/svg/brand-logos/apple-black.svg') }}" class="theme-light-show h-15px me-3" />
+                <img alt="Logo" src="{{ asset('assets/media/svg/brand-logos/apple-black-dark.svg') }}" class="theme-dark-show h-15px me-3" />
+                Sign in with Apple
+            </a>
+        </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="separator separator-content my-14">
+        <span class="w-125px text-gray-500 fw-semibold fs-7">Or with email</span>
+    </div>
+
+    <!-- Email Field -->
+    <div class="fv-row mb-8">
+        <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" required class="form-control bg-transparent" />
+    </div>
+
+    <!-- Submit -->
+    <div class="d-grid mb-10 mt-4">
+        <button type="submit" class="btn btn-primary">Send Reset Link</button>
+    </div>
+
+    <!-- Links -->
+    <div class="text-center">
+        <div class="text-gray-500 fw-semibold fs-6 mb-2">
+            Remembered your password? <a href="{{ url('/login') }}" class="link-primary fw-semibold">Sign in</a>
+        </div>
+        <div class="text-gray-500 fw-semibold fs-6">
+            Don’t have an account? <a href="{{ url('/register') }}" class="link-primary fw-semibold">Sign up</a>
+        </div>
+    </div>
+</form>
+@endsection
