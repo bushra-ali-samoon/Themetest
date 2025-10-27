@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 <header class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="#">Your Logo</a>
