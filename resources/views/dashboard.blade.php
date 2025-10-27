@@ -3,8 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <div class="container">
-        <h2>Welcome to your Dashboard 🎉</h2>
-        <p>You have successfully registered!</p>
-    </div>
+<div class="container py-5">
+    <h1>Welcome to the Dashboard</h1>
+</div>
 @endsection
