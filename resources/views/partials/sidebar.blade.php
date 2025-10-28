@@ -1,54 +1,37 @@
-<div id="kt_app_sidebar" class="app-sidebar flex-column"
-     data-kt-drawer="true"
-     data-kt-drawer-name="app-sidebar"
-     data-kt-drawer-activate="{default: true, lg: false}"
-     data-kt-drawer-overlay="true"
-     data-kt-drawer-width="225px"
-     data-kt-drawer-direction="start"
-     data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" 
+     data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" 
+     data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start">
 
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <a href="{{ url('/') }}">
             <img alt="Logo" src="{{ asset('assets/media/logos/demo8.svg') }}" class="h-25px app-sidebar-logo-default" />
-            <img alt="Logo" src="{{ asset('assets/media/logos/demo8-dark.svg') }}" class="h-20px app-sidebar-logo-minimize" />
         </a>
-
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-sm btn-icon btn-active-color-primary">
             <i class="ki-duotone ki-double-left fs-2 rotate-180"></i>
         </div>
     </div>
 
     <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
-        <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper">
-            <div id="kt_app_sidebar_menu_scroll" class="scroll-y my-5 mx-3" data-kt-scroll="true"
-                 data-kt-scroll-height="auto">
-
-                <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6"
-                     data-kt-menu="true" data-kt-menu-expand="false">
-
-                    <div class="menu-item">
-                        <a class="menu-link active" href="#">
-                            <span class="menu-icon"><i class="ki-duotone ki-element-11 fs-2"></i></span>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </div>
-
-                    <div class="menu-item">
-                        <a class="menu-link" href="#">
-                            <span class="menu-icon"><i class="ki-duotone ki-abstract-26 fs-2"></i></span>
-                            <span class="menu-title">Users</span>
-                        </a>
-                    </div>
-
-                    <div class="menu-item">
-                        <a class="menu-link" href="{{ route('register.form') }}">
-                            <span class="menu-icon"><i class="ki-duotone ki-user-add fs-2"></i></span>
-                            <span class="menu-title">Register</span>
-                        </a>
-                    </div>
-
+        <div class="scroll-y my-5 mx-3" data-kt-scroll="true">
+            <div class="menu menu-column menu-rounded fw-semibold fs-6">
+                <div class="menu-item">
+                    <a class="menu-link active" href="{{ url('/dashboard') }}">
+                        <span class="menu-icon"><i class="ki-duotone ki-element-11 fs-2"></i></span>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
                 </div>
-
+                <div class="menu-item">
+                    <a class="menu-link" href="#">
+                        <span class="menu-icon"><i class="ki-duotone ki-abstract-26 fs-2"></i></span>
+                        <span class="menu-title">Users</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="{{ route('register.form') }}">
+                        <span class="menu-icon"><i class="ki-duotone ki-user-add fs-2"></i></span>
+                        <span class="menu-title">Register</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
